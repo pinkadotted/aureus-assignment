@@ -24,7 +24,6 @@ schema.pre("save", async function() {
     this.password = await bcrypt.hash(this.password, 12);
 })
 
-
 schema.methods.comparePassword = async function (enteredPassword: string) {
     return await bcrypt.compare(enteredPassword, this.password);
   };
