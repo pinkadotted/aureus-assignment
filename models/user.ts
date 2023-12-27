@@ -15,6 +15,7 @@ const schema = new mongoose.Schema({
     password: { type: String, 
                 required: [true, "Please enter a password"],
                 select: false }, // this will prevent the password from being returned in any query
+    applications: [{ type: mongoose.Schema.Types.ObjectId, ref: "jobs" }]
 })
 
 
