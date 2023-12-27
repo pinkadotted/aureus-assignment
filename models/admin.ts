@@ -33,4 +33,4 @@ return jwt.sign({_id: this._id}, process.env.JWT_SECRET || "", {
 })
 }
 
-export const Admin = mongoose.model("admin", schema);
+export const Admin = mongoose.model("Admin", schema);

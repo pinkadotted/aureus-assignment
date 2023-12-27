@@ -1,7 +1,16 @@
-import mongoose from "mongoose";
+import mongoose, { Document } from "mongoose";
 import validator from "validator";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+// interface IUser extends Document {
+//     email: string;
+//     firstName: string;
+//     lastName: string;
+//     password: string;
+//     applications: mongoose.Schema.Types.ObjectId[];
+//     comparePassword: (enteredPassword: string) => Promise<boolean>;
+//     generateToken: () => string;
+// }
 
 const schema = new mongoose.Schema({
     email: { type: String, 
@@ -34,4 +43,5 @@ return jwt.sign({_id: this._id}, process.env.JWT_SECRET || "", {
 })
 };
 
-export const User = mongoose.model("user", schema);
+export const User = mongoose.model("User", schema);
+// export type { IUser };

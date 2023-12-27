@@ -10,4 +10,4 @@ const schema = new mongoose.Schema({
     salary: { type: Number, required: [true, "Please enter a salary"] },
 })
 
-export const Job = mongoose.model("job", schema);
+export const Job = mongoose.model("Job", schema);
