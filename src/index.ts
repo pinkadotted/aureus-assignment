@@ -2,6 +2,7 @@
 import express, { Express, Request, Response } from "express";
 import dotenv from "dotenv";
 import { connectDB } from "../db";
+import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
 
 
@@ -13,20 +14,26 @@ const port = process.env.PORT || 3000;
 // middlewares
 app.use(bodyParser.json());
 app.use(express.json());
+app.use(cookieParser());
+
 
 // root route
 app.get('/', (req: Request, res: Response) => {
   res.send('Hello world!');
 });
 
-// import { registerUser } from "../controllers/user";
-// import { loginUser } from "../controllers/user";
 import { adminLogin, adminRegister, userLogin, userRegister } from "../controllers/authController";
-import { addJob, deleteJob, getAllJobs } from "../controllers/admin";
+import { addJob, deleteJob } from "../controllers/admin";
+import { getAllJobs } from "../controllers/commonController";
+import { viewProfile } from "../controllers/user";
+import { isAuthenticated } from "../controllers/auth";
 
 // routes for the user
 app.post("/user/signup", userRegister)
 app.post("/user/login", userLogin)
+app.get("/user/all-jobs", getAllJobs)
+app.get("/user/view-profile", isAuthenticated, viewProfile)
+
 
 // routes for the admin
 app.post("/admin/signup", adminRegister)
