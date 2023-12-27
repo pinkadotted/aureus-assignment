@@ -68,7 +68,9 @@ export function createAuthController(Model: Model<Document>): IAuthController {
 
                 const token = (user as IUser).generateToken();
 
-                res.status(200).json({ success: true, message: `${(user as IUser).firstName} logged in successfully!`, token });
+                res.status(200).cookie("token", token, {
+                    expires: new Date(Date.now() + 86400000),
+                }).json({ success: true, message: `${(user as IUser).firstName} logged in successfully!`});
             } catch (error) {
                 console.error(error);
                 res.status(500).send('Internal Server Error');
