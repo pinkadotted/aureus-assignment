@@ -58,54 +58,54 @@ Once the server has started, open <localhost:3000> on your browser and visit <lo
 ### Users
 
 #### Register a new user
-```http
+```bash
   POST /api/v1/user/signup
 ```
 #### Login a user
-```http
+```bash
   POST /api/v1/user/login
 ```
 #### Apply for a job
-```http
+```bash
   POST /api/v1/user/jobs/{id}/apply
 ```
 #### View job details
-```http
+```bash
   GET /api/v1/user/jobs/{id}
 ```
 #### View all jobs
-```http
+```bash
   GET /api/v1/user/jobs
 ```
 #### View my applications
-```http
+```bash
   GET /api/v1/user/me/applications
 ```
 #### View my profile
-```http
+```bash
   GET /api/v1/user/me
 ```
 
 ### Admins 
 
 #### Register a new admin
-```http
+```bash
   POST /api/v1/admin/signup
 ```
 #### Login an admin
-```http
+```bash
   POST /api/v1/admin/login
 ```
 #### Add a new job
-```http
+```bash
   POST /api/v1/admin/jobs/add
 ```
 #### Delete a job
-```http
+```bash
   DELETE /api/v1/admin/jobs/delete/{id}
 ```
 #### View all jobs
-```http
+```bash
   GET /api/v1/admin/jobs
 ```
 
