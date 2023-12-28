@@ -41,7 +41,17 @@
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/User'
+ *             type: object
+ *             properties:
+ *               email:
+ *                 type: string
+ *                 description: The email of the admin
+ *               password:
+ *                 type: string
+ *                 description: The password of the admin
+ *             required:
+ *               - email
+ *               - password
  *     responses:
  *       200:
  *         description: Successful login.
@@ -71,12 +81,6 @@
  *           type: string
  *         required: true
  *         description: Job id
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             $ref: '#/components/schemas/Job'
  *     responses:
  *       200:
  *         description: Successful application.
