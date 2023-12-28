@@ -55,7 +55,7 @@ export const viewAllApplications = async (req: Request, res: Response) => {
 
     console.log("jobs: ", jobs)
 
-    res.status(200).json({ success: true, message: 'Jobs found', jobs });
+    res.status(200).json({ success: true, message: 'Your applications found', jobs });
 
 }
 

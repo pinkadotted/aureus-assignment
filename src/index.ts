@@ -40,8 +40,8 @@ const options = {
 
 
 
-export const app: Express = express();
-const port = process.env.PORT || 3000;
+const app: Express = express();
+export const port = process.env.PORT || 3000;
 const router = express.Router();
 
 // middlewares
@@ -82,6 +82,5 @@ app.use(
   swaggerUi.setup(specs)
 );
 
-app.listen(port, () => {
-  console.log(`[server]: Server is running at http://localhost:${port}`);
-});
+
+export {app, router}

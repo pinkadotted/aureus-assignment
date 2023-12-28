@@ -61,7 +61,6 @@
  *               $ref: '#/components/schemas/Admin'
  *       500:
  *         description: Internal server error
- *
  */
 
 // admin/jobs/add
