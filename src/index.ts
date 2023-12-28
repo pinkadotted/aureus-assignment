@@ -40,7 +40,7 @@ const options = {
 
 
 
-const app: Express = express();
+export const app: Express = express();
 const port = process.env.PORT || 3000;
 const router = express.Router();
 
