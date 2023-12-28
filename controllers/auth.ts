@@ -4,6 +4,7 @@ import { User } from "../models/user";
 import { Admin } from "../models/admin";
 import { connectDB } from "../db";
 
+// middleware to check if the user/admin is authenticated
 export const isAuthenticated = async (req: Request, res: Response, next: NextFunction) => {
     const { token } = req.cookies;
 
@@ -23,15 +24,14 @@ export const isAuthenticated = async (req: Request, res: Response, next: NextFun
     req.user = admin;
 
   } else if (userModel === User) {
-    console.log("User model: ", userModel)
     const user = await User.findById(decodedData._id);
     req.user = user;
   }
 
-    console.log("IsAuth passing next: ", req.user)
     next();
 }
 
+// middleware to check if the user is an admin
 export const isAdmin = async (req: Request, res: Response, next: NextFunction) => {
     const {role} = req.user;
 
@@ -40,6 +40,7 @@ export const isAdmin = async (req: Request, res: Response, next: NextFunction) =
     next();
 }
 
+// middleware to check if the user is a user
 export const isUser = async (req: Request, res: Response, next: NextFunction) => {
     const {role} = req.user;
 

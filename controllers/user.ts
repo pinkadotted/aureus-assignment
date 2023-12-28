@@ -2,7 +2,6 @@ import { Request, Response } from 'express';
 import { connectDB } from "../db";
 import { User } from "../models/user";
 import { Job } from '../models/job';
-import { ObjectId, ObjectIdExpression } from 'mongoose';
 
 // user can view their own profile
 export const viewProfile = async (req: Request, res: Response) => {
@@ -15,7 +14,6 @@ export const viewJobDetails = async (req: Request, res: Response) => {
     try {
         const { id } = req.params;
 
-        // connect to the database
         connectDB();
 
         // find the job
@@ -36,15 +34,10 @@ export const viewJobDetails = async (req: Request, res: Response) => {
 export const viewAllApplications = async (req: Request, res: Response) => {
     const { _id } = req.user;
 
-    console.log("user id: ", _id)
-
-    // connect to the database
     connectDB();
 
     // find the user
     const user = await User.findById(_id);
-
-    console.log("user applications: ", user?.applications)
 
     if (!user) {
         return res.status(404).json({ success: false, message: 'User not found' });
@@ -52,8 +45,6 @@ export const viewAllApplications = async (req: Request, res: Response) => {
 
     // find all the jobs
     const jobs = await Job.find({ _id: { $in: user.applications } });
-
-    console.log("jobs: ", jobs)
 
     res.status(200).json({ success: true, message: 'Your applications found', jobs });
 
@@ -65,7 +56,6 @@ export const applyForJob = async (req: Request, res: Response) => {
         const { id } = req.params;
         const { _id } = req.user;
 
-        // connect to the database
         connectDB();
 
         // find the job

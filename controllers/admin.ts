@@ -6,9 +6,8 @@ import mongoose from 'mongoose';
 
 // adding a job 
 export const addJob = async (req: Request, res: Response) => {
-    // connect to DB
     connectDB();
-    // saving the job
+    // creating the job
     const job = await Job.create(req.body);
     // sending the response
     res.status(201).json({ success: true, message: 'Job created successfully', job });

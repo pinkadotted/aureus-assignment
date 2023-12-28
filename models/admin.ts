@@ -61,15 +61,17 @@ const schema = new mongoose.Schema({
             default: "user" }
 })
 
+// hash the password before saving the user
 schema.pre("save", async function() {
-    // hash the password before saving the user
     this.password = await bcrypt.hash(this.password, 12);
 })
 
+// compare the entered password with the hashed password
 schema.methods.comparePassword = async function (enteredPassword: string) {
     return await bcrypt.compare(enteredPassword, this.password);
   };
 
+// generate a token for the user
 schema.methods.generateToken = function () {
 return jwt.sign({_id: this._id, role: this.role}, process.env.JWT_SECRET || "", {
     expiresIn: "2d"

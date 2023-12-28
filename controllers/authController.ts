@@ -5,6 +5,7 @@ import { ObjectId } from 'mongodb';
 import { User } from '../models/user';
 import { Admin } from '../models/admin';
 
+// interface for the user model
 interface IUser extends Document {
     email: string;
     firstName: string;
@@ -21,13 +22,13 @@ interface IAuthController {
     login: (req: Request, res: Response) => void;
 }
 
+// create a generic auth controller that can be used for both users and admins
 export function createAuthController(Model: Model<Document>): IAuthController {
     return {
         async register(req: Request, res: Response) {
             try {
                 const { email, firstName, lastName, password, role } = req.body;
 
-                // connect to the database
                 connectDB();
 
                 // check if the user already exists
@@ -51,7 +52,6 @@ export function createAuthController(Model: Model<Document>): IAuthController {
             try {
                 const { email, password } = req.body;
 
-                // connect to the database
                 connectDB();
 
                 // check if the user already exists
@@ -61,14 +61,17 @@ export function createAuthController(Model: Model<Document>): IAuthController {
                     return res.status(400).json({ success: false, message: 'User does not exist' });
                 }
 
+                // check if the password is correct
                 const isMatch = await (user as IUser).comparePassword(password);
 
                 if (!isMatch) {
                     return res.status(400).json({ success: false, message: 'Incorrect password' });
                 }
 
+                // if the password is correct, generate a jwt
                 const token = (user as IUser).generateToken();
 
+                // send the jwt as a cookie
                 res.status(200).cookie("token", token, {
                     expires: new Date(Date.now() + 86400000),
                 }).json({ success: true, message: `${(user as IUser).firstName} logged in successfully!`});
