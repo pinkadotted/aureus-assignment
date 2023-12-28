@@ -1,16 +1,49 @@
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     User:
+ *       type: object
+ *       required:
+ *         - email
+ *         - firstName
+ *         - lastName
+ *         - password
+ *       properties:
+ *         email:
+ *           type: string
+ *           description: The email of the user
+ *         firstName:
+ *           type: string
+ *           description: The first name of the user
+ *         lastName:
+ *           type: string
+ *           description: The last name of the user
+ *         password:
+ *           type: boolean
+ *           description: The password of the user
+ *         applications:
+ *           type: string
+ *           format: date
+ *           description: The jobs the user has applied for
+ *         role:
+ *           type: string
+ *           description: The role of the user (either user or admin)
+ * 
+ *       example:
+ *        email: example@gmail.com
+ *        firstName: John
+ *        lastName: Doe
+ *        password: helloworld
+ *        role: user
+ */
+
 import mongoose, { Document } from "mongoose";
 import validator from "validator";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-// interface IUser extends Document {
-//     email: string;
-//     firstName: string;
-//     lastName: string;
-//     password: string;
-//     applications: mongoose.Schema.Types.ObjectId[];
-//     comparePassword: (enteredPassword: string) => Promise<boolean>;
-//     generateToken: () => string;
-// }
+
+
 
 const schema = new mongoose.Schema({
     email: { type: String, 
