@@ -20,7 +20,7 @@ export const deleteJob = async (req: Request, res: Response) => {
 
     connectDB();
 
-    // checking if the job was posted by the admin
+    // checking if the job exists
     const job = await Job.findById(id);
     if (!job) {
         res.status(404).json({ success: false, message: 'Job not found' });
