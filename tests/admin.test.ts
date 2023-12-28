@@ -10,7 +10,7 @@ let server: any;
 beforeAll(() => {
     // Start the server and store the reference
     server = app.listen(3001, () => {
-      console.log('Server is running on port 3000');
+      console.log('Server is running on port 3001');
     });
   });
 
