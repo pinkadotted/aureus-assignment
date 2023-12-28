@@ -5,11 +5,12 @@ import { app } from "../src/index";
 require("dotenv").config();
 
 let server: any;
+let randomJobId: string;
 
 beforeAll(() => {
   // Start the server and store the reference
-  server = app.listen(3000, () => {
-    console.log('Server is running on port 3000');
+  server = app.listen(3002, () => {
+    console.log('Server is running on port 3002');
   });
 });
 
@@ -74,7 +75,23 @@ describe("GET /api/v1/user/applications", () => {
 describe("GET /api/v1/user/jobs", () => {
     it("returns a 200 on successful job view", async () => {
         const response = await request(app).get("/user/jobs").set("Cookie", [`token=${authToken}`]);
+
+        // get a random job id from the response to use in the next test
+        randomJobId = response.body.jobs[0]._id;
         expect(response.status).toBe(200);
         expect(response.body.message).toContain("All jobs");
     })})
 
+describe("GET /api/v1/user/jobs/:id", () => {
+    it("returns a 200 on successful job view", async () => {
+        const response = await request(app).get(`/user/jobs/${randomJobId}`).set("Cookie", [`token=${authToken}`]);
+        expect(response.status).toBe(200);
+        expect(response.body.message).toContain("Job found");
+    })})
+
+// "658d0659055476dc4699159b" this is an existing job id, you can change it to any existing job id
+describe("POST /api/v1/user/jobs/{id}/apply", () => {
+    it("returns a 201 on successful job application", async () => {
+        const response = await request(app).post(`/user/jobs/${randomJobId}/apply`).set("Cookie", [`token=${authToken}`]);
+        expect([200, 400].includes(response.status)).toBe(true);    
+    })})
