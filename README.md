@@ -57,7 +57,7 @@ Once the server has started, open <localhost:3000> on your browser and visit <lo
 
 ### Users
 
-#### Register a user
+#### Register a new user
 ```http
   POST /api/v1/user/signup
 ```
@@ -71,17 +71,52 @@ Once the server has started, open <localhost:3000> on your browser and visit <lo
 ```
 #### View job details
 ```http
-  POST /api/v1/user/jobs/{id}
+  GET /api/v1/user/jobs/{id}
 ```
 #### View all jobs
 ```http
-  POST /api/v1/user/jobs
+  GET /api/v1/user/jobs
 ```
 #### View my applications
 ```http
-  POST /api/v1/user/me/applications
+  GET /api/v1/user/me/applications
 ```
 #### View my profile
 ```http
-  POST /api/v1/user/me
+  GET /api/v1/user/me
 ```
+
+### Admins 
+
+#### Register a new admin
+```http
+  POST /api/v1/admin/signup
+```
+#### Login an admin
+```http
+  POST /api/v1/admin/login
+```
+#### Add a new job
+```http
+  POST /api/v1/admin/jobs/add
+```
+#### Delete a job
+```http
+  DELETE /api/v1/admin/jobs/delete/{id}
+```
+#### View all jobs
+```http
+  GET /api/v1/admin/jobs
+```
+
+
+## Documentation
+
+[SwaggerUI Documentation](http://localhost:3000/docs)
+
+### Some important functions
+
+
+## Conclusion
+
+
