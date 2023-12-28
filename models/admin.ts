@@ -15,7 +15,10 @@ const schema = new mongoose.Schema({
     password: { type: String, 
                 required: [true, "Please enter a password"],
                 select: false }, // this will prevent the password from being returned in any query
-    listings: [{ type: mongoose.Schema.Types.ObjectId, ref: "jobs" }]
+    listings: [{ type: mongoose.Schema.Types.ObjectId, ref: "jobs" }],
+    role: { type: String, 
+            enum: ["user", "admin"], 
+            default: "user" }
 })
 
 schema.pre("save", async function() {
@@ -28,7 +31,7 @@ schema.methods.comparePassword = async function (enteredPassword: string) {
   };
 
 schema.methods.generateToken = function () {
-return jwt.sign({_id: this._id}, process.env.JWT_SECRET || "", {
+return jwt.sign({_id: this._id, role: this.role}, process.env.JWT_SECRET || "", {
     expiresIn: "2d"
 })
 }
