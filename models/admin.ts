@@ -1,3 +1,43 @@
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     Admin:
+ *       type: object
+ *       required:
+ *         - email
+ *         - firstName
+ *         - lastName
+ *         - password
+ *       properties:
+ *         email:
+ *           type: string
+ *           description: The email of the admin
+ *         firstName:
+ *           type: string
+ *           description: The first name of the admin
+ *         lastName:
+ *           type: string
+ *           description: The last name of the admin
+ *         password:
+ *           type: boolean
+ *           description: The password of the admin
+ *         listings:
+ *           type: string
+ *           format: date
+ *           description: The jobs the admin has listed
+ *         role:
+ *           type: string
+ *           description: The role of the user (either user or admin)
+ * 
+ *       example:
+ *        email: example@gmail.com
+ *        firstName: John
+ *        lastName: Doe
+ *        password: helloworld
+ *        role: admin
+ */
+
 import mongoose from "mongoose";
 import validator from "validator";
 import bcrypt from "bcrypt";
