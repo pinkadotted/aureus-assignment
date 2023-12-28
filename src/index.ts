@@ -28,11 +28,6 @@ const options = {
         name: "MIT",
         url: "https://spdx.org/licenses/MIT.html",
       },
-      contact: {
-        name: "LogRocket",
-        url: "https://logrocket.com",
-        email: "info@email.com",
-      },
     },
     servers: [
       {
@@ -40,7 +35,7 @@ const options = {
       },
     ],
   },
-  apis: ["src/*.ts", "models/*.ts"],
+  apis: ["src/*.ts", "models/*.ts", "swagger/*.ts"],
 };
 
 
