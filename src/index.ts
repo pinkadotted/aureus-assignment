@@ -42,6 +42,7 @@ const options = {
 
 const app: Express = express();
 const port = process.env.PORT || 3000;
+const router = express.Router();
 
 // middlewares
 app.use(bodyParser.json());
@@ -71,7 +72,7 @@ app.delete("/admin/jobs/delete/:id",isAuthenticated, isAdmin, deleteJob)
 app.get("/admin/jobs",isAuthenticated, isAdmin, getAllJobs)
 
 
-
+app.use("/api/v1", router);
 
 
 const specs = swaggerJsdoc(options);
