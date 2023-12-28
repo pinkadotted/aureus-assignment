@@ -15,10 +15,18 @@ export const addJob = async (req: Request, res: Response) => {
 
 // deleting a job
 export const deleteJob = async (req: Request, res: Response) => {
-    // connect to DB
+    const { id } = req.params;
+
     connectDB();
+
+    // checking if the job was posted by the admin
+    const job = await Job.findById(id);
+    if (!job) {
+        res.status(404).json({ success: false, message: 'Job not found' });
+    }
     // deleting the job
-    const job = await Job.findByIdAndDelete(req.params.id);
+    await Job.findByIdAndDelete(id);
+
     // sending the response
     res.status(200).json({ success: true, message: 'Job deleted successfully', job });
 }
