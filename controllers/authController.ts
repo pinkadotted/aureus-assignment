@@ -11,6 +11,7 @@ interface IUser extends Document {
     lastName: string;
     password: string;
     applications: ObjectId[];
+    role: string;
     comparePassword: (password: string) => Promise<boolean>;
     generateToken: () => string;
 }
@@ -24,7 +25,7 @@ export function createAuthController(Model: Model<Document>): IAuthController {
     return {
         async register(req: Request, res: Response) {
             try {
-                const { email, firstName, lastName, password } = req.body;
+                const { email, firstName, lastName, password, role } = req.body;
 
                 // connect to the database
                 connectDB();
@@ -37,7 +38,7 @@ export function createAuthController(Model: Model<Document>): IAuthController {
                 }
 
                 // if the user does not exist, create a new user
-                user = await Model.create({ email, firstName, lastName, password });
+                user = await Model.create({ email, firstName, lastName, password, role });
 
                 res.status(201).json({ success: true, message: `${(user as IUser).firstName} registered successfully!`, user });
             } catch (error) {
