@@ -27,7 +27,7 @@ The tests for the admin routes run on port 3001 while the tests for the user rou
 ```
 npm run dev
 ```
-Once the server has started, open <localhost:3000> on your browser and visit <localhost:3000/docs> to view the SwaggerUI Docs. 
+Once the server has started, open [http://localhost:3000](http://localhost:3000) on your browser and visit [http://localhost:3000/docs](localhost:3000/docs) to view the SwaggerUI Docs. 
 
 
 ## Features
@@ -64,7 +64,7 @@ Once the server has started, open <localhost:3000> on your browser and visit <lo
 | isUser              | A middleware that ensures the requester's role is "user".                                                                                                                             |   |
 | isAdmin             | A middleware that ensures the requester's role is "admin".                                                                                                                            |   |
 | login               | Takes an Express Request object containing {email, password} and if the credentials are valid, returns a cookie containing a JWT.                                                     |   |
-| addJob              | Takes an Express Request object containing {title, description, image, active, postedAt, company, salary} and creates a ob in the database.                                           |   |
+| addJob              | Takes an Express Request object containing {title, description, image, active, postedAt, company, salary} and creates a job in the database.                                           |   |
 | deleteJob           | Takes a job's id in the request parameter, checks if it exists and if it does, deletes the job from the database.                                                                     |   |
 | getAllJobs          | Returns the "jobs" property that contains all the jobs found in the database.                                                                                                         |   |
 | applyForJob         | Takes a job's id in the request parameter, checks if it exists and if it does, adds the job's id (with a reference to the Job object) to the user's "applications" array.             |   |
