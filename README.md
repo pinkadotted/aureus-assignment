@@ -79,4 +79,4 @@ Overall, I believe I have written the APIs conforming to the standard practices 
 I have chosen to use 2 different models for Users and Admins instead of combining them into 1 and differentiating them using just the role as both types of users have multiple differring properties, and it would be difficult to encapsulate them neatly by using just 1 model. Perhaps, this can be further looked into to find some optimisations. 
 
 
-For future improvements, users and admins may be allowed to be able to edit their personal details, as well as edit their job applications.
+For future improvements, users and admins may be allowed to be able to edit their personal details, as well as edit their job applications. More comprehensive test coverage is another improvement that can be looked into. 
