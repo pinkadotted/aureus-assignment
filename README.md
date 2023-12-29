@@ -2,7 +2,7 @@
 # Backend Developer Assignment
 
 ## Overview
-This is a nodeJS application for a Job Portal. It is primarily written using ExpressJS and Typescript, with a help of a few other npm packages. 
+This is a nodeJS application for a Job Portal. It is primarily written using ExpressJS and Typescript, with the help of a few other npm packages. 
 
 
 
