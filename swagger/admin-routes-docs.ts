@@ -4,7 +4,7 @@
  * tags:
  *   name: Admins
  *   description: The admin managing API
- * /admin/signup:
+ * /api/v1/admin/signup:
  *   post:
  *     summary: Register a new admin
  *     tags: [Admins]
@@ -32,7 +32,7 @@
  * tags:
  *   name: Admins
  *   description: The admin managing API
- * /admin/login:
+ * /api/v1/admin/login:
  *   post:
  *     summary: Login an admin
  *     tags: [Admins]
@@ -69,7 +69,7 @@
  * tags:
  *   name: Admins
  *   description: The admin managing API
- * /admin/jobs/add:
+ * /api/v1/admin/jobs/add:
  *   post:
  *     summary: Add a new job
  *     tags: [Admins]
@@ -97,7 +97,7 @@
  * tags:
  *   name: Admins
  *   description: The admin managing API
- * /admin/jobs/delete/{id}:
+ * /api/v1/admin/jobs/delete/{id}:
  *   delete:
  *     summary: Delete a job
  *     tags: [Admins]
@@ -126,7 +126,7 @@
  * tags:
  *   name: Admins
  *   description: The admin managing API
- * /admin/jobs:
+ * /api/v1/admin/jobs:
  *   get:
  *     summary: View all jobs
  *     tags: [Admins]

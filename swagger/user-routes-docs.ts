@@ -4,7 +4,7 @@
  * tags:
  *   name: Users
  *   description: The users managing API
- * /user/signup:
+ * /api/v1/user/signup:
  *   post:
  *     summary: Register a new user
  *     tags: [Users]
@@ -32,7 +32,7 @@
  * tags:
  *   name: Users
  *   description: The users managing API
- * /user/login:
+ * /api/v1/user/login:
  *   post:
  *     summary: Login a user
  *     tags: [Users]
@@ -70,7 +70,7 @@
  * tags:
  *   name: Users
  *   description: The users managing API
- * /user/jobs/{id}/apply:
+ * /api/v1/user/jobs/{id}/apply:
  *   post:
  *     summary: Apply for a job
  *     tags: [Users]
@@ -99,7 +99,7 @@
  * tags:
  *   name: Users
  *   description: The users managing API
- * /user/jobs/{id}:
+ * /api/v1/user/jobs/{id}:
  *   get:
  *     summary: View job details
  *     tags: [Users]
@@ -128,7 +128,7 @@
  * tags:
  *   name: Users
  *   description: The users managing API
- * /user/jobs:
+ * /api/v1/user/jobs:
  *   get:
  *     summary: View all jobs
  *     tags: [Users]
@@ -150,7 +150,7 @@
  * tags:
  *   name: Users
  *   description: The users managing API
- * /user/me/applications:
+ * /api/v1/user/me/applications:
  *   get:
  *     summary: View my applications
  *     tags: [Users]
@@ -172,7 +172,7 @@
  * tags:
  *   name: Users
  *   description: The users managing API
- * /user/me:
+ * /api/v1/user/me:
  *   get:
  *     summary: View my profile
  *     tags: [Users]
