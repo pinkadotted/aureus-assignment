@@ -19,11 +19,23 @@
  *         description: Successful registration.
  *         content:
  *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/User'
+ *            example:
+ *              success: true
+ *              message: User registered successfully!
+ *       400:
+ *        description: Admin already exists
+ *        content:
+ *         application/json:
+ *           example:
+ *             success: false
+ *             message: User already exists
  *       500:
  *         description: Internal server error
- *
+ *         content:
+ *          application/json:
+ *           example:
+ *              success: false
+ *              message: Internal Server Error
  */
 
 // user/login
@@ -58,9 +70,29 @@
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/User'
+ *               $ref: '#/components/schemas/Admin'
+ *       400:
+ *         description: Incorrect password
+ *         content:
+ *           application/json:
+ *             example:
+ *               success: false
+ *               message: Incorrect password
+ *       401:
+ *         description: User does not exist
+ *         content:
+ *           application/json:
+ *             example:
+ *               success: false
+ *               message: User does not exist
  *       500:
  *         description: Internal server error
+ *         content:
+ *           application/json:
+ *            example:
+ *              success: false
+ *              message: Internal Server Error
+ * 
  *
  */
 
@@ -86,10 +118,30 @@
  *         description: Successful application.
  *         content:
  *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/Job'
+ *             example:
+ *              success: true
+ *              message: Successfully applied for the job
+ *       400:
+ *        description: You have already applied for this job
+ *        content:
+ *          application/json:
+ *           example:
+ *            success: false
+ *            message: You have already applied for this job
+ *       404:
+ *        description: Job not found
+ *        content:
+ *         application/json:
+ *          example:
+ *           success: false
+ *           message: Job not found
  *       500:
  *         description: Internal server error
+ *         content:
+ *           application/json:
+ *            example:
+ *              success: false
+ *              message: Internal Server Error
  *
  */
 
@@ -115,10 +167,32 @@
  *         description: Successful operation.
  *         content:
  *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/Job'
+ *            example:
+ *              success: true
+ *              message: Job found
+ *              job: {
+ *               _id: 5f9d4b5b6c6b4b2b6c6b4b2b,
+ *               title: "Software Engineer",
+ *               description: "We are looking for a software engineer",
+ *               image: "https://images.unsplash.com/photo-1556742048-ede6c971a8a3?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8c29mdHdhcmUlMjBlbmdpbmVlcmluZyUyMHNvZnR3YXJlJTIwZW5naW5lZXJpbmd8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80",
+ *               active: true,
+ *               postedAt: 2021-07-01T00:00:00.000Z,
+ *               company: "Google",
+ *               salary: 100000,}
+ *       404:
+ *         description: Job not found
+ *         content:
+ *           application/json:
+ *             example:
+ *               success: false
+ *               message: Job not found
  *       500:
  *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             example:
+ *               success: false
+ *               message: Internal Server Error
  *
  */
 
@@ -134,13 +208,19 @@
  *     tags: [Users]
  *     responses:
  *       200:
- *         description: Successful operation.
+ *         description: Successful retrieval.
  *         content:
  *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/Job'
+ *             example:
+ *              success: true
+ *              message: All jobs
  *       500:
  *         description: Internal server error
+ *         content:
+ *           application/json:
+ *            example:
+ *              success: false
+ *              message: Internal Server Error
  *
  */
 
@@ -159,10 +239,26 @@
  *         description: Successful operation.
  *         content:
  *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/Job'
+ *            example:
+ *             success: true
+ *             message: Your applications found
+ *            jobs: [
+ *                      {
+ *                       _id: 5f9d4b5b6c6b4b2b6c6b4b2b,
+ *                       title: "Software Engineer",
+ *                       description: "We are looking for a software engineer",
+ *                       image: "https://images.unsplash.com/photo-1556742048-ede6c971a8a3?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8c29mdHdhcmUlMjBlbmdpbmVlcmluZyUyMHNvZnR3YXJlJTIwZW5naW5lZXJpbmd8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80",
+ *                       active: true,
+ *                       postedAt: 2021-07-01T00:00:00.000Z,
+ *                       company: "Google",
+ *                       salary: 100000,}]
  *       500:
  *         description: Internal server error
+ *         content:
+ *           application/json:
+ *            example:
+ *              success: false
+ *              message: Internal Server Error
  *
  */
 
@@ -181,9 +277,21 @@
  *         description: Successful operation.
  *         content:
  *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/User'
+ *             example:
+ *               success: true
+ *               message: User found
+ *               user: {
+ *                _id: 5f9d4b5b6c6b4b2b6c6b4b2b,
+ *                firstName: "John",
+ *                lastName: "Doe",
+ *                email: "john@gmail.com",
+ *                role: "user"}
  *       500:
  *         description: Internal server error
+ *         content:
+ *           application/json:
+ *            example:
+ *              success: false
+ *              message: Internal Server Error
  *
  */
