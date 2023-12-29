@@ -5,8 +5,14 @@ import { Job } from '../models/job';
 
 // user can view their own profile
 export const viewProfile = async (req: Request, res: Response) => {
-    const user = req.user;
-    res.status(200).json({ success: true, message: 'User found', user });
+    try {
+        const user = req.user;
+        return res.status(200).json({ success: true, message: 'User found', user });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).send('Internal Server Error');
+    }
+
 }
 
 // user can view more details about a job
@@ -23,30 +29,35 @@ export const viewJobDetails = async (req: Request, res: Response) => {
             return res.status(404).json({ success: false, message: 'Job not found' });
         }
 
-        res.status(200).json({ success: true, message: 'Job found', job });
+        return res.status(200).json({ success: true, message: 'Job found', job });
     } catch (error) {
         console.error(error);
-        res.status(500).send('Internal Server Error');
+        return res.status(500).send('Internal Server Error');
     }
 }
 
 // user can view all applications
 export const viewAllApplications = async (req: Request, res: Response) => {
-    const { _id } = req.user;
-
-    connectDB();
-
-    // find the user
-    const user = await User.findById(_id);
-
-    if (!user) {
-        return res.status(404).json({ success: false, message: 'User not found' });
+    try {
+        const { _id } = req.user;
+    
+        connectDB();
+    
+        // find the user
+        const user = await User.findById(_id);
+    
+        if (!user) {
+            return res.status(404).json({ success: false, message: 'User not found' });
+        }
+    
+        // find all the jobs
+        const jobs = await Job.find({ _id: { $in: user.applications } });
+    
+        return res.status(200).json({ success: true, message: 'Your applications found', jobs });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).send('Internal Server Error');
     }
-
-    // find all the jobs
-    const jobs = await Job.find({ _id: { $in: user.applications } });
-
-    res.status(200).json({ success: true, message: 'Your applications found', jobs });
 
 }
 
@@ -82,9 +93,9 @@ export const applyForJob = async (req: Request, res: Response) => {
         // apply for the job
         await User.findByIdAndUpdate(_id, { $push: { applications: id } });
 
-        res.status(200).json({ success: true, message: 'Successfully applied for the job' });
+        return res.status(200).json({ success: true, message: 'Successfully applied for the job' });
     } catch (error) {
         console.error(error);
-        res.status(500).send('Internal Server Error');
+        return res.status(500).send('Internal Server Error');
     }
 }

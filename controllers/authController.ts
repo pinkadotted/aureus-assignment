@@ -41,10 +41,10 @@ export function createAuthController(Model: Model<Document>): IAuthController {
                 // if the user does not exist, create a new user
                 user = await Model.create({ email, firstName, lastName, password, role });
 
-                res.status(201).json({ success: true, message: `${(user as IUser).firstName} registered successfully!`, user });
+                return res.status(201).json({ success: true, message: `${(user as IUser).firstName} registered successfully!`, user });
             } catch (error) {
                 console.error(error);
-                res.status(500).send('Internal Server Error');
+                return res.status(500).send('Internal Server Error');
             }
         },
 
@@ -72,12 +72,12 @@ export function createAuthController(Model: Model<Document>): IAuthController {
                 const token = (user as IUser).generateToken();
 
                 // send the jwt as a cookie
-                res.status(200).cookie("token", token, {
+                return res.status(200).cookie("token", token, {
                     expires: new Date(Date.now() + 86400000),
                 }).json({ success: true, message: `${(user as IUser).firstName} logged in successfully!`});
             } catch (error) {
                 console.error(error);
-                res.status(500).send('Internal Server Error');
+                return res.status(500).send('Internal Server Error');
             }
         },
     };

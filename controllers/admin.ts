@@ -11,33 +11,40 @@ export const addJob = async (req: Request, res: Response) => {
         // creating the job
         const job = await Job.create(req.body);
         // sending the response
-        res.status(201).json({ success: true, message: 'Job created successfully', job });
+        return res.status(201).json({ success: true, message: 'Job created successfully', job });
     } catch (err) {
         console.log(err);
-        res.status(500).json({ success: false, message: 'Internal server error' });
+        return res.status(500).json({ success: false, message: 'Internal server error' });
     }
 }
 
 // deleting a job
 export const deleteJob = async (req: Request, res: Response) => {
+    let job;
     try {
         const id  = req.params.id;
     
         connectDB();
     
         // checking if the job exists
-        const job = await Job.findById(id);
-        if (!job) {
-            res.status(404).json({ success: false, message: 'Job not found' });
+        try {
+            const paramID = new mongoose.Types.ObjectId(id);
+            const job = await Job.findById({ _id: paramID });
+            if (!job) {
+                return res.status(404).json({ success: false, message: 'Job not found' });
+            }
+        } catch (error) {
+            return res.status(404).json({ success: false, message: "Please enter an existing job's id" });
         }
+    
         // deleting the job
         const jobID = new mongoose.Types.ObjectId(id);
         await Job.findByIdAndDelete(jobID);
     
         // sending the response
-        res.status(200).json({ success: true, message: 'Job deleted successfully', job });
+        return res.status(200).json({ success: true, message: 'Job deleted successfully', job });
     } catch (err) {
         console.log(err);
-        res.status(500).json({ success: false, message: 'Internal server error' });
+        return res.status(500).json({ success: false, message: 'Internal server error' });
     }
 }

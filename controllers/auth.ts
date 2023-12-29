@@ -6,6 +6,7 @@ import { connectDB } from "../db";
 
 // middleware to check if the user/admin is authenticated
 export const isAuthenticated = async (req: Request, res: Response, next: NextFunction) => {
+  try {
     const { token } = req.cookies;
 
     if (!token) return res.status(401).json({ success: false, message: 'Unauthorized' });
@@ -29,22 +30,36 @@ export const isAuthenticated = async (req: Request, res: Response, next: NextFun
   }
 
     next();
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({ success: false, message: 'Internal server error' });
+  }
 }
 
 // middleware to check if the user is an admin
 export const isAdmin = async (req: Request, res: Response, next: NextFunction) => {
+  try {
     const {role} = req.user;
 
     if (role !== "admin") return res.status(403).json({ success: false, message: 'Forbidden' });
     
     next();
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({ success: false, message: 'Internal server error' });
+  }
 }
 
 // middleware to check if the user is a user
 export const isUser = async (req: Request, res: Response, next: NextFunction) => {
+  try {
     const {role} = req.user;
 
     if (role !== "user") return res.status(403).json({ success: false, message: 'Forbidden' });
     
     next();
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({ success: false, message: 'Internal server error' });
+  }
 }
