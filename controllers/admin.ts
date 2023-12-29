@@ -34,7 +34,7 @@ export const deleteJob = async (req: Request, res: Response) => {
                 return res.status(404).json({ success: false, message: 'Job not found' });
             }
         } catch (error) {
-            return res.status(404).json({ success: false, message: "Please enter an existing job's id" });
+            return res.status(400).json({ success: false, message: "Please enter an existing job's id" });
         }
     
         // deleting the job
