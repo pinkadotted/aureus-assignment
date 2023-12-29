@@ -51,72 +51,32 @@ Once the server has started, open <localhost:3000> on your browser and visit <lo
 - Delete a job by providing the job id
 
 
-
-
-## API Routes
-
-### Users
-
-#### Register a new user
-```bash
-  POST /api/v1/user/signup
-```
-#### Login a user
-```bash
-  POST /api/v1/user/login
-```
-#### Apply for a job
-```bash
-  POST /api/v1/user/jobs/{id}/apply
-```
-#### View job details
-```bash
-  GET /api/v1/user/jobs/{id}
-```
-#### View all jobs
-```bash
-  GET /api/v1/user/jobs
-```
-#### View my applications
-```bash
-  GET /api/v1/user/me/applications
-```
-#### View my profile
-```bash
-  GET /api/v1/user/me
-```
-
-### Admins 
-
-#### Register a new admin
-```bash
-  POST /api/v1/admin/signup
-```
-#### Login an admin
-```bash
-  POST /api/v1/admin/login
-```
-#### Add a new job
-```bash
-  POST /api/v1/admin/jobs/add
-```
-#### Delete a job
-```bash
-  DELETE /api/v1/admin/jobs/delete/{id}
-```
-#### View all jobs
-```bash
-  GET /api/v1/admin/jobs
-```
-
-
 ## Documentation
 
 [SwaggerUI Documentation](http://localhost:3000/docs)
 
 ### Some important functions
 
+| Function name       | Description                                                                                                                                                                           |   |
+|---------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---|
+| register            | Takes an Express Request object containing  {  email ,  firstName ,  lastName ,  password ,  role  } and registers a user if the provided email is not already found in the database. |   |
+| isAuthenticated     | A middleware that parses the JWT from the request's cookie and sets the "user" property of the request, to be subsequently used when viewing profile.                                 |   |
+| isUser              | A middleware that ensures the requester's role is "user".                                                                                                                             |   |
+| isAdmin             | A middleware that ensures the requester's role is "admin".                                                                                                                            |   |
+| login               | Takes an Express Request object containing {email, password} and if the credentials are valid, returns a cookie containing a JWT.                                                     |   |
+| addJob              | Takes an Express Request object containing {title, description, image, active, postedAt, company, salary} and creates a ob in the database.                                           |   |
+| deleteJob           | Takes a job's id in the request parameter, checks if it exists and if it does, deletes the job from the database.                                                                     |   |
+| getAllJobs          | Returns the "jobs" property that contains all the jobs found in the database.                                                                                                         |   |
+| applyForJob         | Takes a job's id in the request parameter, checks if it exists and if it does, adds the job's id (with a reference to the Job object) to the user's "applications" array.             |   |
+| viewJobDetails      | Takes a job's id in the request parameter, checks if it exists and if it does, returns the job's full details.                                                                        |   |
+| viewAllApplications | Returns the requester's "applications" array.                                                                                                                                         |   |
+| viewProfile         | Returns the requester's "user" property, which contains their full details.                                                                                                           |   |
 
-## Conclusion
+## Conclusion/Some thoughts 
+
+Overall, I believe I have written the APIs conforming to the standard practices that I am currently aware of. 
+
+I have chosen to use 2 different models for Users and Admins instead of combining them into 1 and differentiating them using just the role as both types of users have multiple differring properties, and it would be difficult to encapsulate them neatly by using just 1 model. Perhaps, this can be further looked into to find some optimisations. 
 
 
+For future improvements, users and admins may be allowed to be able to edit their personal details, as well as edit their job applications.
