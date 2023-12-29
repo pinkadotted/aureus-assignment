@@ -55,7 +55,7 @@ const schema = new mongoose.Schema({
     password: { type: String, 
                 required: [true, "Please enter a password"],
                 select: false }, // this will prevent the password from being returned in any query
-    listings: [{ type: mongoose.Schema.Types.ObjectId, ref: "jobs" }],
+    listings: [{ type: mongoose.Schema.Types.ObjectId, ref: "jobs" }], // while this is not used for now, it can be used to keep track of the jobs the admin has listed in the future
     role: { type: String, 
             enum: ["user", "admin"], 
             default: "user" }
