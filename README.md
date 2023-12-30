@@ -9,7 +9,9 @@ This is a nodeJS application for a Job Portal. It is primarily written using Exp
 
 ## Quick start
 
-Go to the root directory of the project: aureus-assignment
+Go to the root directory of the project: aureus-assignment.
+
+Add the .env file to the root directory of the project and rename it to ".env" before getting started. 
 
 ```bash
   npm install
